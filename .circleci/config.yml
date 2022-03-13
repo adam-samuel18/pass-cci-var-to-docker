@@ -1,17 +1,17 @@
 version: 2.1
 
-executors:
-  test-bundle:
-    docker:
-      - image: cimg/base:2021.04
-        environment:
-          FOO: $foo
+#executors:
+#  test-bundle:
+#    docker:
+#      - image: cimg/base:2021.04
+#        environment:
+#          FOO: $foo
 
-      - image: alpine
-        environment:
-          FOO: $foo
-        # Need foo env var here, but getting literal as $foo
-        command: ["sh", "-c", "env"]
+#      - image: alpine
+#        environment:
+#          FOO: $foo
+#        # Need foo env var here, but getting literal as $foo
+#        command: ["sh", "-c", "env"]
 
 jobs:
   build:
@@ -21,10 +21,10 @@ jobs:
       FOO: $foo
     steps:
       - run: sh -c env
-  bundle:
-    executor: test-bundle
-    steps:
-      - run: sh -c env
+#  bundle:
+#    executor: test-bundle
+#    steps:
+#      - run: sh -c env
   where:
     docker:
       - image: circleci/node:12
