@@ -32,10 +32,15 @@ jobs:
       - run: mkdir a; cd a; mkdir repos
       - checkout: { path: repos/$foo }
       - run: echo pwd:;pwd; echo ls;ls; echo 'ls a';ls a; echo "ls repos/$foo";ls repos/$foo;
+  where2:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - run: export FOO=$foo; printenv;
 
 workflows:
   test:
     jobs:
-      - where
+      - where2
       #- build
       #- bundle
