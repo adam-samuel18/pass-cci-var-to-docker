@@ -14,13 +14,13 @@ version: 2.1
 #        command: ["sh", "-c", "env"]
 
 jobs:
-  build:
-    docker:
-      - image: alpine
-    environment:
-      FOO: $foo
-    steps:
-      - run: sh -c env
+#  build:
+#    docker:
+#      - image: alpine
+#    environment:
+#      FOO: $foo
+#    steps:
+#      - run: sh -c env
 #  bundle:
 #    executor: test-bundle
 #    steps:
