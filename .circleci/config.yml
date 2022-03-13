@@ -1,0 +1,41 @@
+version: 2.1
+
+executors:
+  test-bundle:
+    docker:
+      - image: cimg/base:2021.04
+        environment:
+          FOO: $foo
+
+      - image: alpine
+        environment:
+          FOO: $foo
+        # Need foo env var here, but getting literal as $foo
+        command: ["sh", "-c", "env"]
+
+jobs:
+  build:
+    docker:
+      - image: alpine
+    environment:
+      FOO: $foo
+    steps:
+      - run: sh -c env
+  bundle:
+    executor: test-bundle
+    steps:
+      - run: sh -c env
+  where:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - run: mkdir a; cd a; mkdir repos
+      - checkout: { path: repos/$CIRCLE_PROJECT_REPONAME }
+      - run: echo pwd:;pwd; echo ls;ls; echo 'ls a';ls a; echo "ls repos/$CIRCLE_PROJECT_REPONAME";ls repos/$CIRCLE_PROJECT_REPONAME;
+
+workflows:
+  test:
+    jobs:
+      - where
+      #- build
+      #- bundle
