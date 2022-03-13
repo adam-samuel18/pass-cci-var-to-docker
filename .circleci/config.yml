@@ -30,8 +30,8 @@ jobs:
       - image: circleci/node:12
     steps:
       - run: mkdir a; cd a; mkdir repos
-      - checkout: { path: repos/$CIRCLE_PROJECT_REPONAME }
-      - run: echo pwd:;pwd; echo ls;ls; echo 'ls a';ls a; echo "ls repos/$CIRCLE_PROJECT_REPONAME";ls repos/$CIRCLE_PROJECT_REPONAME;
+      - checkout: { path: repos/$foo }
+      - run: echo pwd:;pwd; echo ls;ls; echo 'ls a';ls a; echo "ls repos/$foo";ls repos/$foo;
 
 workflows:
   test:
